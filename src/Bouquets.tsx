@@ -11,6 +11,31 @@ interface Bouquet {
   full_url: string;
 }
 
+const mockBouquets: Bouquet[] = [
+  {
+    bouquet_id: 1,
+    name: 'Подарочные корзины с цветами',
+    description: 'Наши подарочные корзины - это полный праздник в одной упаковке. Мы предлагаем широкий выбор букетов цветов, которые можно дополнить шоколадом, вином, ароматическими свечами или даже плюшевыми мишками. Отправьте этот прекрасный подарок с доставкой к двери, чтобы порадовать кого-то особенного.',
+    price: '7000',
+    full_url: 'images/basket_with_flowers.jpeg',
+  },
+  {
+    bouquet_id: 2,
+    name: 'Цветы на свадьбу',
+    description: 'Для вашего особенного дня мы предлагаем услугу оформления свадебных цветов с доставкой и установкой на месте. Мы создадим магические цветочные композиции, которые подчеркнут красоту и романтику вашей свадьбы. Доверьтесь нам, чтобы сделать этот день незабываемым.',
+    price: '10000',
+    full_url: 'images/flowers_for_merry.jpg',
+  },
+  {
+    bouquet_id: 3,
+    name: 'Цветы на выпускной',
+    description: 'Поздравьте выпускников с нашими уникальными букетами. Наши цветы помогут создать незабываемую атмосферу и добавят радости в это важное событие. Закажите доставку к двери и сделайте этот день особенным для них.',
+    price: '8000',
+    full_url: 'images/flowers_for_outlet.jpg',
+  },
+  // Add more mock bouquets as needed
+];
+
 const BouquetsPage: FC = () => {
   const navigateTo = useNavigate();
   const location = useLocation();
@@ -23,17 +48,13 @@ const BouquetsPage: FC = () => {
   const [priceValue, setPriceValue] = useState(priceParam);
 
   const fetchBouquets = (searchText: string, price: string) => {
-    // Fetch bouquet data using the relative path with query parameter
-    fetch(`/bouquets/?q=${searchText}&price=${price}`)
-      .then(response => response.json())
-      .then(data => {
-        setBouquets(data);
-      })
-      .catch(error => {
-        console.error('Error fetching bouquets:', error);
-      });
+    // Use mock data instead of fetching from the API
+    const filteredBouquets = mockBouquets.filter(bouquet =>
+      bouquet.name.toLowerCase().includes(searchText.toLowerCase()) &&
+      bouquet.price.includes(price)
+    );
+    setBouquets(filteredBouquets);
   };
-
   const breadcrumbsItems = [
     { label: 'Все букеты', link:'' } // Link to the current page
   ];
@@ -84,7 +105,7 @@ const BouquetsPage: FC = () => {
                   <p className="card-text">{bouquet.description}</p>
                   <p className="card-text">Цена: {bouquet.price} рублей</p>
                   {/* Add more text elements here if needed */}
-                  <a href={`/bouquetss/${bouquet.bouquet_id}/`} className="btn btn-primary">
+                  <a href={`/RIP_front/#/bouquetss/${bouquet.bouquet_id}/`} className="btn btn-primary">
                     Подробнее
                   </a>
                 </div>
