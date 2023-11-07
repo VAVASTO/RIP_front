@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     element: <h1>Это наша стартовая страница</h1>,
   },
   {
-    path: '/RIP/',
+    path: '/RIP_front/',
     element: <h1>Это наша страница с чем-то новеньким</h1>,
   },
   {
