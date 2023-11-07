@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path= '/bouquetss' element={<BouquetsPage />}/>
-          <Route path= '/' element={<BouquetsPage />}/>
+          <Route path= '/' element={<h1>Это наша страница с чем-то новеньким</h1>}/>
           <Route path= '/bouquetss/:id/' element={<BouquetDetailPage />} />
 
         </Routes>
